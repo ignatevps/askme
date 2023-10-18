@@ -4,3 +4,11 @@
   display: flex;
   justify-content: space-between;
 }
+
+.question-answer {
+  margin-bottom: 10px;
+}
+
+.question-text {
+  color: #fca311;
+}

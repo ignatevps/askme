@@ -1,0 +1,23 @@
+.users-list-item {
+  display: inline-block;
+}
+
+.user-image-div {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto;
+  border: 5px solid #f0477f;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.user-image-div-small {
+  width: 75px;
+  height: 75px;
+  border-width: 3px;
+}
+
+.user-image {
+  max-width: 100%;
+  max-height: 100%;
+}

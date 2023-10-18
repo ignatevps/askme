@@ -1,13 +1,9 @@
 module ApplicationHelper
-  def inclination(count, one, few, many)
-    return many if (count % 100).between?(11,14)
-    
-    case count % 10
-    when 1 then one
-    when 2..4 then few
+  def user_avatar(user)
+    if user.avatar_url.present?
+      user.avatar_url
     else
-      many
+      asset_path 'avatar.jpeg'
     end
   end
-
 end

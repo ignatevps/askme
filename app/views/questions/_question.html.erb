@@ -1,4 +1,4 @@
-<div class="mb-sm">
+<div class="question-text text-lead mb-sm">
   <%= question.body %>
 </div>
 
@@ -6,11 +6,20 @@
   <div class="ext-grey">
     <%= l(question.created_at, format: :short) %>
   </div>
-
-  <div>
-    <%= link_to fa_icon('pencil'), edit_question_path(question),
-      title: "Edit question" %>
-    <%= button_to fa_icon('trash-o'), question_path(question),
-      method: :delete, title: "Delete question" %>
-  </div>
+  <% edit_icon = question.answer.blank? ? 'reply' : 'pencil' %>
+  <% if question.user == current_user %>
+    <div>
+      <%= link_to fa_icon(edit_icon), edit_question_path(question),
+        title: "Edit question" %>
+      <%= button_to fa_icon('trash-o'), question_path(question),
+        method: :delete, title: "Delete question" %>
+    </div>
+  <% end %>
  </div>
+
+
+ <% if question.answer.present? %>
+  <div class="question-answer text-lead mt">
+    <%= question.answer if question.answer.present? %>
+  </div>
+<% end %>

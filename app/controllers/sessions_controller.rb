@@ -1,8 +1,10 @@
 class SessionsController < ApplicationController
   def new
+    redirect_to root_path, alert: 'You have already logged' if current_user.present?
   end
 
   def create
+    redirect_to root_path, alert: 'You have already logged' if current_user.present?
     user_params = params.require(:session)
 
     user = User.find_by(email: user_params[:email])&.authenticate(user_params[:password])

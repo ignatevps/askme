@@ -34,3 +34,16 @@ a, button {
 .text-red {
   color: red;
 }
+
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-lead {
+  font-size: 20px;
+  line-height: 28px;
+}

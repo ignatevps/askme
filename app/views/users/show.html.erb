@@ -1,0 +1,38 @@
+<div class="container mb-sm mt">
+  <h1 class="text-center mb">
+    <%= @user.name %>
+  </h1>
+
+  <div class="user-image-div">
+    <%= image_tag user_avatar(@user), class: 'user-image', alt: '[Foto]' %>
+  </div>
+
+  <h2 class="text-center mt">
+    @<%= @user.nickname %>
+  </h2>
+
+  <div class="text-center">
+    <%= link_to 'Edit profile', edit_user_path(@user) if current_user == @user %>
+  </div>
+</div>
+
+<% if current_user.present? && current_user != @user || current_user == nil %>
+<div class="container">
+  <div class="mt">
+    <%= render 'questions/form', question: @new_question %>
+  </div>
+</div>
+<% end %>
+
+<div class="container mt-sm">
+  <h2 class="title-lg">
+  <%= @questions.count %>
+  <%= t('question', count: @questions.count ) %>
+  </h2>
+</div>
+
+<% @questions.each do |question| %>
+  <div class="mt-sm container">
+    <%= render question %>
+  </div>
+<% end %>

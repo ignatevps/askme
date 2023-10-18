@@ -1,9 +1,25 @@
-  <%= form_with model: question do |form| %>
-    <p><%= form.label :body, 'Question text' %></p>
-    <p><%= form.text_area :body, rows: 5, class: 'form-text-area' %></p>
+<div class="form">
+  <%= form_with model: question do |f| %>
+    <% if question.errors.any? %>
+        <div class="mt">
+          <% question.errors.full_messages.each do |message| %>
+            <p class="mb-sm text-red"><%= message %></p>
+          <% end %>
+        </div>
+    <% end %>
+    <%# Скрытое поле — айдишник юзера, кому задается вопрос %>
+    <%= f.hidden_field :user_id %>
 
-    <p class="mt"><%= form.label :user_id %></p>
-    <p><%= form.text_field :user_id, class: 'form-text-field' %></p>
+      <p class="mb-sm"><%= f.label :body, "Your question"%></p>
+      <%= f.text_area :body, rows: 5, class: 'form-text-area' %>
 
-    <p class="mt"><%= form.submit 'Save', class: 'button button-main' %></p>
+      <% if current_user.present? && current_user == question.user %>
+        <div class="form-field">
+          <p class="mb-sm"><%= f.label :answer, 'Answer'%></p>
+          <%= f.text_area :answer, rows: 5, class: 'form-text-area' %>
+        </div>
+      <% end %>
+
+      <p class="mt"><%= f.submit 'Send', class: 'button button-main' %></p>
   <% end %>
+</div>
