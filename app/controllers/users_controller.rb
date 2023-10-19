@@ -17,6 +17,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     
     if @user.save
+      session[:user_id] = @user.id
       redirect_to root_path, notice: 'You have successfully registered'
     else
       flash.now[:alert] = 'The registration form is filled out incorrectly'
@@ -29,7 +30,7 @@ class UsersController < ApplicationController
   
   def update
     if @user.update(user_params)
-      redirect_to root_path, notice: 'User data has been updated'
+      redirect_to user_path, notice: 'User data has been updated'
     else
       flash.now[:alert] = 'An error occurred when trying to save a user'
       
@@ -55,8 +56,9 @@ class UsersController < ApplicationController
   end
   
   def user_params
-    params.require(:user).permit(:name, :nickname, :email, :password,
-                                 :password_confirmation, :avatar_url)
+    params.require(:user).permit(:name, :nickname, :email,
+                                 :password, :password_confirmation,
+                                 :avatar_url, :profile_color)
   end
 
   def set_user

@@ -23,7 +23,6 @@ class QuestionsController < ApplicationController
   end
 
   def edit
-
   end
 
   private
@@ -38,9 +37,9 @@ class QuestionsController < ApplicationController
 
   def question_params
     if current_user.present? && params[:question][:user_id].to_i == current_user.id
-     params.require(:question).permit(:user_id, :body, :answer)
+     params.require(:question).permit(:user_id, :body, :answer, :author_id)
     else
-     params.require(:question).permit(:user_id, :body)
+     params.require(:question).permit(:user_id, :body, :author_id)
     end
   end
 

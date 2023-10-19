@@ -9,6 +9,10 @@
     <% end %>
     <%# Скрытое поле — айдишник юзера, кому задается вопрос %>
     <%= f.hidden_field :user_id %>
+    <% if session[:user_id].present? && session[:user_id] != question[:user_id] %>
+      <% question[:author_id] = session[:user_id] %>
+      <%= f.hidden_field :author_id %>
+    <% end %>
 
       <p class="mb-sm"><%= f.label :body, "Your question"%></p>
       <%= f.text_area :body, rows: 5, class: 'form-text-area' %>

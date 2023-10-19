@@ -14,3 +14,7 @@
   box-sizing: border-box;
   width: 100%;
 }
+
+.form-color-field {
+  width: 160px;
+}

@@ -1,6 +1,9 @@
 <div class="question-text text-lead mb-sm">
   <%= question.body %>
 </div>
+<% if question.author_id.present? %>
+  <p class="mb-sm">@<%= question.author.nickname %></p>
+<% end %>
 
 <div class="text-sm question-footer">
   <div class="ext-grey">
