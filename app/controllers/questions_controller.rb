@@ -13,12 +13,12 @@ class QuestionsController < ApplicationController
 
   def update
     @question.update(question_params)
-    redirect_to user_path(@question.user), notice: "Question edited"
+    redirect_to user_path(@question.user), notice: 'Question edited'
   end
 
   def destroy 
     @question.destroy
-    redirect_to user_path, notice: "Question deleted"
+    redirect_to user_path, notice: 'Question deleted'
   end
 
   def edit
@@ -31,15 +31,14 @@ class QuestionsController < ApplicationController
   end
 
   def authorize_user
-    reject_user  unless @question.user == current_user
+    reject_user unless @question.user == current_user
   end
 
   def question_params
     if current_user.present? && params[:question][:user_id].to_i == current_user.id
-     params.require(:question).permit(:user_id, :body, :answer, :author_id)
+      params.require(:question).permit(:user_id, :body, :answer, :author_id)
     else
-     params.require(:question).permit(:user_id, :body, :author_id)
+      params.require(:question).permit(:user_id, :body, :author_id)
     end
   end
-
 end

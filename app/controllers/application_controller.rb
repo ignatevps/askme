@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
-  helper_method :current_user #теперь метод будет доступен во всех шаблонах
+  # now the method will be available in all templates
+  helper_method :current_user
 
   private
 
